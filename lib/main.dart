@@ -1,4 +1,5 @@
 
+import 'package:commmerce/src/features/welcome/bloc/welcome_bloc.dart';
 import 'package:commmerce/src/features/welcome/view/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,9 +16,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return 
-    // BlocProvider(
-      // create: (context) => SubjectBloc(),
-      // child: 
+    BlocProvider(
+      create: (context) => WelcomeBloc(),
+      child: 
       ScreenUtilInit(
         builder: (context,child)=> MaterialApp(
             title: 'Flutter Demo',
@@ -28,6 +29,6 @@ class MyApp extends StatelessWidget {
             ),
             home: const Welcome()
           ),
-      );
+     ) );
   }
 }
