@@ -1,9 +1,10 @@
-import 'package:commmerce/src/features/welcome/bloc/welcome_bloc.dart';
+import '/src/features/welcome/bloc/welcome_bloc.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../constant/color/color.dart';
+import '../../login/view/login.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});
@@ -13,6 +14,7 @@ class Welcome extends StatefulWidget {
 }
 
 class _WelcomeState extends State<Welcome> {
+  PageController pageController = PageController(initialPage: 0);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,14 +27,16 @@ class _WelcomeState extends State<Welcome> {
               child: Stack(
                 children: [
                   PageView(
+                    controller: pageController,
                     onPageChanged: (index) {
                       state.page = index;
                       BlocProvider.of<WelcomeBloc>(context).add(WelcomeEvent());
-                      
                     },
                     children: [
-                      _page(1, context, "Next", "Chào mừng bạn đến với chúng tôi", "image"),
-                      _page(2, context, "Next", "Kết nối với mọi người", "image")
+                      _page(1, context, "Next", "Chào mừng bạn đến với chúng tôi",
+                          "assets/images/hi.jpg"),
+                      _page(
+                          2, context, "Next", "Kết nối với mọi người", "assets/images/lesson.webp")
                     ],
                   ),
                   Positioned(
@@ -61,13 +65,12 @@ class _WelcomeState extends State<Welcome> {
     return Column(
       children: [
         SizedBox(
-          width: MediaQuery.of(context).size.width * 0.9,
-          height: MediaQuery.of(context).size.width * 0.6,
-          child: const Text(
-            "WElCOME",
-            style: TextStyle(color: kRedColor, fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-        ),
+            width: MediaQuery.of(context).size.width * 0.9,
+            height: MediaQuery.of(context).size.width * 0.6,
+            child: Image.asset(
+              imagePath,
+              fit: BoxFit.cover,
+            )),
         Padding(
           padding: const EdgeInsets.all(30.0),
           child: SizedBox(
@@ -75,16 +78,27 @@ class _WelcomeState extends State<Welcome> {
             child: Text(title),
           ),
         ),
-        Container(
-          height: 50,
-          margin: const EdgeInsets.only(top: 100, right: 25, left: 25),
-          decoration: const BoxDecoration(
-              color: kBlueColor,
-              borderRadius: BorderRadius.all(Radius.circular(15)),
-              boxShadow: [
-                BoxShadow(color: kGreyColor, spreadRadius: 1, blurRadius: 2, offset: Offset(0, 1))
-              ]),
-          child: Center(child: Text(buttonName)),
+        GestureDetector(
+          onTap: () {
+            if (index < 2) {
+              pageController.animateToPage(index,
+                  duration: const Duration(milliseconds: 1000), curve: Curves.decelerate);
+            } else {
+             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Login()));
+
+            }
+          },
+          child: Container(
+            height: 50,
+            margin: const EdgeInsets.only(top: 100, right: 25, left: 25),
+            decoration: const BoxDecoration(
+                color: kBlueColor,
+                borderRadius: BorderRadius.all(Radius.circular(15)),
+                boxShadow: [
+                  BoxShadow(color: kGreyColor, spreadRadius: 1, blurRadius: 2, offset: Offset(0, 1))
+                ]),
+            child: Center(child: Text(buttonName)),
+          ),
         )
       ],
     );
