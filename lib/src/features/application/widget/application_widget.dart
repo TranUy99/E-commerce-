@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 
+import '../../home/view/home.dart';
+import '../../profile/view/profile.dart';
+
 Widget buildPage(int index) {
   List<Widget> widget = [
-    const Center(
-      child: Text("Home"),
-    ),
+    const Home(),
     const Center(
       child: Text("Search"),
     ),
@@ -14,9 +15,7 @@ Widget buildPage(int index) {
     const Center(
       child: Text("Chat"),
     ),
-    const Center(
-      child: Text("Profile"),
-    ),
+    const Profile()
   ];
 
   return widget[index];

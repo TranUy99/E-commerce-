@@ -34,6 +34,9 @@ dependencies:
   retrofit_generator: ^7.0.1
   shared_preferences: ^2.2.2
   top_snackbar_flutter: ^3.1.0
+  carousel_slider: ^4.2.1
+  smooth_page_indicator: ^1.1.0
+  get: ^4.6.5
 dev_dependencies:
   flutter_test:
     sdk: flutter

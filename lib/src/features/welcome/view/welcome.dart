@@ -1,3 +1,6 @@
+import 'package:Commerce/main.dart';
+
+import '../../application/view/application.dart';
 import '/src/features/welcome/bloc/welcome_bloc.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
@@ -84,8 +87,14 @@ class _WelcomeState extends State<Welcome> {
               pageController.animateToPage(index,
                   duration: const Duration(milliseconds: 1000), curve: Curves.decelerate);
             } else {
-             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Login()));
-
+              if (getUser.idUser != null) {
+                
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (context) => const Application()));
+              } else {
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (context) => const Login()));
+              }
             }
           },
           child: Container(

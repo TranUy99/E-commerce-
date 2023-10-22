@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 const kGreenColor = Color.fromARGB(239, 112, 240, 131);
 const kSecondaryColor = Color(0xFF59706F);
 const kLightGreyColor = Color(0xFFA8A8A8);
-const kWhiteColor = Color(0xFFFFFFFF);
+const kWhiteColor = Color.fromARGB(255, 255, 255, 255);
 const kZambeziColor = Color(0xFF5B5B5B);
 const kBlackColor = Color(0xFF272726);
 const kTextFieldColor = Color(0xFF979797);
